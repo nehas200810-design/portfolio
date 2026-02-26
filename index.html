@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neha S — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1A1A1A;
+      --accent: #C85F3A;
+      --muted: #7A7265;
+      --border: #E0D9CE;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(245,240,232,0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 9rem 4rem 5rem;
+      gap: 4rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 42%; height: 100%;
+      background: linear-gradient(145deg, #EAE0D2, #D6CABB);
+      z-index: 0;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .eyebrow {
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 1.4rem;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 430px;
+      margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--ink); color: var(--cream);
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+    .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; }
+    .hero-card {
+      background: var(--ink); color: var(--cream);
+      padding: 2.8rem 2.5rem;
+      width: 330px;
+      position: relative;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute; bottom: -10px; right: -10px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--accent);
+      z-index: -1;
+    }
+    .card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .hero-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      line-height: 1.3;
+      margin-bottom: 0.9rem;
+    }
+    .hero-card p { font-size: 0.88rem; line-height: 1.7; color: #AAA; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.4rem; }
+    .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.75rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #BBB;
+    }
+
+    /* SECTION COMMONS */
+    .sec { padding: 6rem 4rem; border-top: 1px solid var(--border); }
+    .sec-label {
+      font-size: 0.73rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .sec-label::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      line-height: 1.12;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ABOUT */
+    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+    .about-body p strong { color: var(--ink); font-weight: 500; }
+
+    .strengths-wrap { padding-top: 0.5rem; }
+    .strengths-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .s-box {
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .s-box:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .s-icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .s-title { font-size: 0.84rem; font-weight: 500; margin-bottom: 0.25rem; }
+    .s-sub { font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
+
+    /* PROJECTS */
+    #projects {
+      background: var(--ink);
+      border-top: 1px solid #2A2A2A;
+      padding: 6rem 4rem;
+    }
+    #projects .sec-label { color: var(--accent); }
+    #projects .sec-label::before { background: var(--accent); }
+    #projects .sec-title { color: var(--cream); }
+
+    /* project cards listing */
+    .project-list { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; }
+
+    .proj {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2.5rem;
+      padding: 2.8rem 0;
+      border-top: 1px solid #2A2A2A;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .proj:last-child { border-bottom: 1px solid #2A2A2A; }
+    .proj::before {
+      content: '';
+      position: absolute; top: 0; left: -4rem;
+      width: 3px; height: 0;
+      background: var(--accent);
+      transition: height 0.4s ease;
+    }
+    .proj:hover::before { height: 100%; }
+
+    .proj-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #2C2C2C;
+      line-height: 1;
+      transition: color 0.3s;
+      padding-top: 0.2rem;
+    }
+    .proj:hover .proj-num { color: var(--accent); }
+
+    .proj-body {}
+    .proj-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+    .proj-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      color: var(--cream);
+      line-height: 1.15;
+    }
+    .proj-status {
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+    }
+    .done { background: rgba(200,95,58,0.15); color: var(--accent); }
+    .wip  { background: rgba(255,255,255,0.06); color: #777; }
+
+    .proj-body p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #777;
+      margin-bottom: 1.4rem;
+      max-width: 680px;
+    }
+    .proj-body p strong { color: #999; font-weight: 400; }
+
+    .proj-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.4rem; }
+    .pill {
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid #2E2E2E;
+      color: #666;
+    }
+
+    /* details block */
+    .proj-details {
+      background: #161616;
+      padding: 1.6rem 1.8rem;
+      margin-top: 0.5rem;
+      border-left: 2px solid var(--accent);
+    }
+    .proj-details h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+    .proj-details ul { list-style: none; }
+    .proj-details ul li {
+      font-size: 0.88rem;
+      color: #888;
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+    .proj-details ul li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* CONTACT */
+    #contact { text-align: center; }
+    #contact .sec-label { justify-content: center; }
+    #contact .sec-label::before { display: none; }
+    .contact-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-style: italic;
+      color: var(--muted);
+      margin: 0.6rem 0 0.8rem;
+    }
+    .contact-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .contact-btns { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+    .cbtn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.85rem 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.25s;
+    }
+    .cbtn.dark { background: var(--ink); color: var(--cream); }
+    .cbtn.dark:hover { background: var(--accent); }
+    .cbtn.out { border: 1.5px solid var(--ink); color: var(--ink); }
+    .cbtn.out:hover { background: var(--ink); color: var(--cream); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: #3A3A3A;
+      text-align: center;
+      padding: 1.4rem;
+      font-size: 0.73rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(26px); animation: fu 0.7s ease forwards; }
+    @keyframes fu { to { opacity: 1; transform: translateY(0); } }
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.25s; }
+    .fade-up:nth-child(3) { animation-delay: 0.4s; }
+    .fade-up:nth-child(4) { animation-delay: 0.55s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      nav { padding: 1.1rem 1.5rem; }
+      .nav-links { gap: 1.4rem; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+      .hero::before { display: none; }
+      .hero-card { width: 100%; }
+      #about { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+      #projects { padding: 4rem 1.5rem; }
+      #projects .proj::before { left: -1.5rem; }
+      #contact { padding: 4rem 1.5rem; }
+      .proj { grid-template-columns: 50px 1fr; gap: 1.5rem; }
+      .sec { padding: 4rem 1.5rem; }
+      .strengths-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Neha S</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow fade-up">Electronics · Robotics · Innovation</div>
+    <h1 class="fade-up">Hi, I'm<br><em>Neha S.</em></h1>
+    <p class="hero-desc fade-up">
+      A deep thinker and hands-on innovator — I never stop asking <em>"why"</em> and <em>"how,"</em> whether it's circuits, drones, or the natural world.
+    </p>
+    <a href="#projects" class="btn-primary fade-up">See My Work →</a>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-label">Currently building</div>
+      <h2>UAV Drone System from Scratch</h2>
+      <p>Sensors, motor control, flight strategies — understanding every layer before building the next.</p>
+      <div class="tags">
+        <span class="tag">Electronics</span>
+        <span class="tag">Robotics</span>
+        <span class="tag">UAV / Flight</span>
+        <span class="tag">Motor Control</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="about-body">
+    <div class="sec-label">About Me</div>
+    <h2 class="sec-title">Curious at the core.<br>Builder by instinct.</h2>
+    <p>
+      I'm someone who needs to understand things at their <strong>fundamental level</strong> — not just how to use them, but why they work the way they do. That curiosity pulls me into electronics, robotics, and the natural world constantly.
+    </p>
+    <p>
+      I thrive in the space between theory and practice — where ideas become experiments and experiments become real, working things. <strong>Patience and persistence</strong> are my biggest tools, right alongside a soldering iron.
+    </p>
+    <p>
+      Every project I take on starts with a question and ends with something I built with my own hands. That loop is what drives me.
+    </p>
+  </div>
+  <div class="strengths-wrap">
+    <div class="sec-label">Core Strengths</div>
+    <div class="strengths-grid">
+      <div class="s-box">
+        <div class="s-icon">⚡</div>
+        <div class="s-title">Electronics</div>
+        <div class="s-sub">Circuit design, component selection & hands-on assembly</div>
+      </div>
+      <div class="s-box">
+        <div class="s-icon">🤖</div>
+        <div class="s-title">Robotics</div>
+        <div class="s-sub">Sensors, motor control & systems integration</div>
+      </div>
+      <div class="s-box">
+        <div class="s-icon">🧠</div>
+        <div class="s-title">Deep Thinking</div>
+        <div class="s-sub">Curiosity-driven exploration — always asking why, not just how</div>
+      </div>
+      <div class="s-box">
+        <div class="s-icon">🔧</div>
+        <div class="s-title">Problem Solving</div>
+        <div class="s-sub">Iterate, experiment and persist until it genuinely works</div>
+      </div>
+      <div class="s-box">
+        <div class="s-icon">🔬</div>
+        <div class="s-title">Experimentation</div>
+        <div class="s-sub">Hands-on prototyping with a layered, methodical approach</div>
+      </div>
+      <div class="s-box">
+        <div class="s-icon">💡</div>
+        <div class="s-title">Innovation</div>
+        <div class="s-sub">Practical solutions that combine functionality and creativity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-label">Work</div>
+  <h2 class="sec-title">Projects</h2>
+
+  <div class="project-list">
+
+    <!-- Project 1 -->
+    <div class="proj" id="smart-dock">
+      <div class="proj-num">01</div>
+      <div class="proj-body">
+        <div class="proj-top">
+          <h3>Smart Charging Dock</h3>
+          <span class="proj-status done">Completed</span>
+        </div>
+        <p>
+          An automated mobile charging system designed to prevent overcharging using a <strong>555 Timer IC</strong>. Every step — from circuit design to final testing — was handled independently.
+        </p>
+        <div class="proj-pills">
+          <span class="pill">555 Timer IC</span>
+          <span class="pill">Circuit Design</span>
+          <span class="pill">Electronics</span>
+          <span class="pill">Prototyping</span>
+          <span class="pill">Component Selection</span>
+        </div>
+        <div class="proj-details">
+          <h4>Project Details</h4>
+          <ul>
+            <li>Designed the full circuit schematic using a 555 Timer IC to cut power at charge completion</li>
+            <li>Selected and sourced components based on voltage, current, and timing requirements</li>
+            <li>Assembled the circuit from scratch and iterated through multiple prototypes</li>
+            <li>Tested for reliability and overcharge protection under real charging conditions</li>
+            <li>Final system works autonomously — no manual intervention needed once connected</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="proj" id="drone">
+      <div class="proj-num">02</div>
+      <div class="proj-body">
+        <div class="proj-top">
+          <h3>Drone / UAV System</h3>
+          <span class="proj-status wip">In Progress</span>
+        </div>
+        <p>
+          Building a fully functional UAV from the ground up. The focus is on truly understanding every subsystem — not just assembling parts, but knowing why each piece behaves the way it does.
+        </p>
+        <div class="proj-pills">
+          <span class="pill">UAV / Flight</span>
+          <span class="pill">Sensors</span>
+          <span class="pill">Motor Control</span>
+          <span class="pill">Electronics Integration</span>
+          <span class="pill">Flight Strategy</span>
+        </div>
+        <div class="proj-details">
+          <h4>Project Details</h4>
+          <ul>
+            <li>Studying sensor types (IMU, barometer, GPS) and their role in stable flight</li>
+            <li>Working on motor control logic and ESC configuration for controlled thrust</li>
+            <li>Exploring flight control algorithms and understanding PID tuning</li>
+            <li>Applying a layered build approach — each system verified before integrating the next</li>
+            <li>Goal: a fully self-built UAV with a deep understanding of every component</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="sec-label">Get In Touch</div>
+  <p class="contact-tagline">"Let's build something real."</p>
+  <p class="contact-sub">
+    Whether it's a collaboration, a question, or just a good conversation about electronics — I'm in.
+  </p>
+  <div class="contact-btns">
+    <a href="https://github.com/nehas200810-design" target="_blank" class="cbtn dark">⌥ GitHub</a>
+    <a href="https://www.linkedin.com/in/neha-s-668a263a8" target="_blank" class="cbtn out">↗ LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>&copy; 2026 Neha S — All rights reserved.</footer>
+
+</body>
+</html>
